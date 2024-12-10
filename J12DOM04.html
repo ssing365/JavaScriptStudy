@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="myBody">
+    <h3>DOM동적 추가 / 삭제</h3>
+    <a href="javascript:createDOM()">동적생성</a>
+</body>
+<script>
+    const myColor = ['#ffbe76', '#f6e58d', '#ff7979', '#f9ca24', '#badc58'];
+    let cnt = 0;
+    function createDOM(){
+        const myBody = document.getElementById('myBody');
+        const newDiv = document.createElement('div');
+        newDiv.innerHTML = 'd           i                 v';
+        newDiv.setAttribute('id', 'myDiv');
+        newDiv.style.backgroundColor = myColor[++cnt%5];
+        newDiv.onclick=function(){
+            const pe = this.parentElement;
+            pe.removeChild(this);
+
+        };
+        myBody.appendChild(newDiv);
+    }
+</script>
+</html> 

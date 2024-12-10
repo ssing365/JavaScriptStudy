@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    id 속성은 HTML문서에서 하나만 사용할 수 있다.
+    class속성은 공통속성으로 여러 개를 사용할 수 있다.
+     -->
+    <style>
+        div{
+            border: 1px solid blue;
+            #mydiv{font-size: 24px;};
+            .mycls{padding: 5px;}
+        }
+    </style>
+    <script>
+        function myDivId(){
+            const div = document.getElementById("mydiv");
+            div.style.color = 'red';
+        }
+
+        function myDivClass(){
+            const divs = document.getElementsByClassName("mycls");
+            for (let i = 0; i < divs.length; i++) {
+                divs[i].style.color = 'green';
+            }
+        }
+    </script>
+
+    <div id="mydiv" class="mycls">MyDiv1</div>
+    <div id="mydiv" class="mycls">MyDiv2</div>
+    <div id="mydiv" class="mycls">MyDiv3</div>
+    <div id="mydiv" class="mycls">MyDiv4</div>
+
+    <button type="button" onclick="myDivId();">Id 버튼</button>
+    <button onclick="myDivClass();">Class버튼</button>
+</body>
+</html>

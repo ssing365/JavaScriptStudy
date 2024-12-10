@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>팝업창 제어하기</h2>
+    <h3>여기는 부모창임</h3>
+    <fieldset>
+        <legend>우편번호 검색하기</legend> 
+         <table>
+            <tr>
+                <td>우편번호</td>
+                <td>
+                    <input type="text" name="" id="zipcode" size="5" />
+                    <button onclick="findZipcode();">우편번호 찾기</button>
+                </td>
+            </tr>
+            <tr>
+                <td>기본주소</td>
+                <td>
+                    <input type="text" id="addr1" size="30"/>
+                </td>
+            </tr>
+            <tr>
+                <td>상세주소</td>
+                <td>
+                    <input type="text" id="addr2" size="40"/>
+                </td>
+            </tr>
+         </table>
+    </fieldset>
+</body>
+<script>
+    /*
+    open() : 광고나 공지사항을 게시할 팝업창을 열고 싶을 때 사용하는 함수
+    형식 :
+        window.open();
+        - 창의 이름을 지정하지 않으면 동일한 창이 여러개 띄워진다.
+        - 창의 이름이 동일하면 하나의 창에 여러개의 창을 띄울 수 있다.
+    */
+    function findZipcode(){
+        window.open("./pages/zipcode.html","Zip", "width=400, height=400,\
+         left=500, top=100, location=no, toolbar=no, \
+        menubar=no, scrollbar=yes, resizable=no");
+    }
+</script>
+</html>

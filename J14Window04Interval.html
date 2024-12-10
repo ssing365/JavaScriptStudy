@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>setInterval(), setTimeout()</h2>
+
+    <h3>일정 시간 후 함수 실행</h3>
+    <input type="button" value="5초 후 함수 실행" onclick="fnCallAfter('T');" />
+    <input type="button" value="함수 호출 중지" onclick="fnCallBreak(1);" />
+
+    <h3>일정 시간마다 함수 실행</h3>
+    <input
+      type="button"
+      value="3초 마다 함수 실행"
+      onclick="fnCallAfter('I');"
+    />
+    <input type="button" value="함수 호출 중지" onclick="fnCallBreak(2);" />
+
+    <h3>간단한 디지털 시계 구현하기</h3>
+    <span
+      id="clock"
+      style="color: aquamarine; font-size: 1.8em; font-weight: bold"
+    ></span>
+    <button type="button" onclick="displayTimeCall();">디지털 시계</button>
+    <iframe title="Story_Sample" width="1024" height="576" src="https://ion.cesium.com/stories/viewer/?id=9ad00885-5dfa-4a1c-a276-8d7e4e77c1aa" frameborder="0" allow="fullscreen" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+  </body>
+
+  <script>
+    const fnOnce = () => {
+        console.log("5초 후 딱 한번만 실행됨");
+    }
+    const fnContinue = () => {
+        console.log("3초마다 매번 실행됨");
+    }
+
+    let timerOnce, timerMode;
+
+    const fnCallAfter = (flag) => {
+        if(flag == "T"){
+            timerOnce = window.setTimeout("fnOnce()", 5000);
+        }
+        else{
+            timerMode = window.setInterval("fnContinue()", 3000);
+        }
+    }
+
+    function fnCallBreak(flag){
+        if(flag==1) clearTimeout(timerOnce);
+        else clearInterval(timerMode);
+    }
+
+    function displayTime(){
+        const date = new Date();
+        const displayClock = document.getElementById("clock");
+        Hour = String(date.getHours()).padStart(2,'0');
+        Min = String(date.getMinutes()).padStart(2,'0');
+        Sec = String(date.getSeconds()).padStart(2,'0');
+        displayClock.innerHTML = `${Hour}시 ${Min}분 ${Sec}초`
+    }
+
+    function displayTimeCall(){
+        setInterval( "displayTime()",1000 );
+    }
+  </script>
+</html>

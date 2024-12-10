@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fnGetElementsByName(){
+            const names = document.getElementsByName("inter");
+            for(i = 0; i<names.length; i++){
+                if(names[i].checked == true){
+                    names[i].checked = null;
+                    //names[i].checked = false;
+                }
+                else if(names[i].checked==false){
+                    //names[i].checked = 'checked';
+                    names[i].checked=true;
+                }
+            }
+        }
+        function fnGetElementsClass(){
+            const portals = document.getElementsByClassName('portal');
+            for(i=0; i<portals.length; i++){
+                alert(portals[i].innerHTML);
+            }
+        }
+
+        function fnChangeImg(imgNum){
+            const img_tag = document.getElementById("trump");
+            img_tag.src = "./images/"+imgNum +".jpg";
+            img_tag.width = parseInt(imgNum * 50);
+        }
+    </script>
+
+    <h2>동적으로 이미지 교체하기(ID로 DOM객체 얻기)</h2>
+    <fieldset>
+        <legend>이미지 동적 교체하기</legend>
+        <a onmouseover=fnChangeImg(1) href="javascript:fnChangeImg(1);">1번이미지</a>
+        <a onmouseover=fnChangeImg(2) href="javascript:fnChangeImg(2);">2번이미지</a>
+        <a onmouseover=fnChangeImg(3) href="javascript:fnChangeImg(3);">3번이미지</a>
+        <a onmouseover=fnChangeImg(4) href="javascript:fnChangeImg(4);">4번이미지</a>
+        <a onmouseover=fnChangeImg(5) href="javascript:fnChangeImg(5);">5번이미지</a>
+        <a onmouseover=fnChangeImg(6) href="javascript:fnChangeImg(6);">6번이미지</a>
+        <a onmouseover=fnChangeImg(7) href="javascript:fnChangeImg(7);">7번이미지</a>
+        <a onmouseover=fnChangeImg(8) href="javascript:fnChangeImg(8);">8번이미지</a>
+        <a onmouseover=fnChangeImg(9) href="javascript:fnChangeImg(9);">9번이미지</a>
+        <a onmouseover=fnChangeImg(10) href="javascript:fnChangeImg(10);">10번이미지</a>
+        <hr/>
+        <img src="" id="trump" alt="" width="100" alt="이미지 교체하기">
+    </fieldset>
+
+    <h2>이름으로 얻어오기</h2>
+    <input type="checkbox" name="inter" id=" " value="POL " checked=true >정치
+    <input type="checkbox" name="inter" id=" " value="ECO " checked=true>경제
+    <input type="checkbox" name="inter" id=" " value="ENT " checked=true>연예
+    <input type="button" value="name 속성에 지정한 값으로 DOM 객체 얻기" onclick="fnGetElementsByName()">
+
+    <h2>클래스명으로 객체얻기</h2>
+    <ul>
+        <li><a href="#" class="portal">네<b>이</b>버</a></li>
+        <li><a href="#" class="portal">다음</a></li>
+        <li><a href="#" class="portal">네이트</a></li>
+    </ul>
+    <button onclick="fnGetElementsClass()">클래스명으로 DOM 객체 얻어오기</button>
+    
+</body>
+</html>
