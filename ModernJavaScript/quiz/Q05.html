@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        user_input = prompt("월화수목금토일 중에서 입력하세요.");
+        const days = ['월', '화', '수', '목'];
+        if(days.includes(user_input)){
+            document.write(user_input+"은(는) 출근");
+        }else{
+            document.write(user_input+"은(는) 휴일");
+        }
+    </script>
+</body>
+</html>

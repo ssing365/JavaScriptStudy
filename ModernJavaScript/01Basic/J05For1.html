@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>    
+        //
+        for(let i=1; i<=5; i ++){
+            console.log("i=" + i);
+        }
+
+        let sum = 0;
+        for(let j=1; j<=10; j++){
+            sum += j;
+        }
+        console.log("1~10까지의 합 : ",sum)
+    </script>
+</head>
+<body>
+    <h2>반복문 - for문</h2>
+    <script>
+
+        document.write("<h3>구구단 출력하기</h3>");
+        for(let dan=2; dan<=9; dan++){
+            for(let su=1; su<=10; su++){
+                document.write(dan+"*"+su+"="+(dan*su)+'&nbsp;');
+            }
+            document.write('<br>');
+        }
+    </script>
+    <h3>0과 1패턴 출력하기</h3>
+    <script>
+        for(let x=1; x<=5; x++){
+            for(let y=1; y<=5; y++){
+                if(x==y){
+                    document.write("1");
+
+                }else{
+                    document.write("<br>")
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>

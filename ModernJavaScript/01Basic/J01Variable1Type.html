@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>변수와 타입</h2>
+    <script>
+
+        let num;
+        console.error("변수 초기화 전")
+        console.log("자료형 : ", typeof(num), "데이터 : ", num);
+
+        console.error("변수 초기화 후")
+        num = 100;
+        console.log("자료형 : ", typeof(num), "데이터 : ", num);
+
+        num = "문자열";
+        console.log("자료형 : ", typeof(num), "데이터 : ", num);
+
+        num = true;
+        console.log("자료형 : ", typeof(num), "데이터 : ", num);
+
+        let num1 = 10, num2, str1 = "자바스크립트", str2;
+
+        //숫자+undefined = NaN
+        const result = num1 + num2;
+        if(isNaN(result)){
+            console.log("NaN이다. 즉 숫자가 아니다.");
+        }else{
+            console.log("NaN이 아니다. 즉 숫자이다.");
+        }
+
+        //string + undefined = 서로 연결됨
+        console.log("str1+str2=" + (str1+str2));
+        //number + 문자 = 서로 연결됨
+        console.log("num1+str2=" + (num1+str2));
+
+        /*
+        JS에서는 기본자료형을 제외한 나머지는 object형으로 간주한다.
+        즉 Java와 같이 Date타입 등이 존재하지 않는다.
+        */
+        console.error("기타자료형");
+        
+        const date = new Date();
+        console.log("자료형 : ", typeof(date), "  데이터 : ", date)
+
+    </script>
+    
+</body>
+</html>

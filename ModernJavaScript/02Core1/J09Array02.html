@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let studentArray = new Array();
+        //함수를 무기명으로 정의
+        let getAverage = function(){
+            let countOfStudent = document.getElementById("numOfStudent").value;
+            let total = 0;
+            for(let i=0; i<countOfStudent; i++){
+                studentArray[i] = 
+                    //입력값은 string이므로 연산을 위해 number타입으로 변환한다.
+                    parseInt(prompt(i+1 +"번째 학생점수", "77"));
+                //배열에 저장된 점수를 total에 누적하여 합산한다.
+                total += studentArray[i];
+            }
+            //평균 계산
+            let average = total / countOfStudent;
+            //각 학생의 점수와 총점, 평균을 하나의 문자열로 만든다.
+            let stringResult = "";
+            for(let i=0; i<countOfStudent; i++){
+                stringResult += (i+1) + "번째학생의 점수 : "+studentArray[i] +"\r\n";
+            }
+            stringResult += "총점 : "+total +", 평균 : "+average;
+            //문자열을 경고창으로 띄운다.
+            alert(stringResult);
+        }
+    </script>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td>학생수입력:</td>
+            <!-- type을 number로 지정하면 숫자 증감을 위한 스핀박스가 우측에 생성된다.
+             또한 한글/영문은 입력할 수 없게 된다.-->
+            <td><input type="number" id="numOfStudent" size="5" value="1"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button onclick="getAverage();">
+                    평균구하기</button>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

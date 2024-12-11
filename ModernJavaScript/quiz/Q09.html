@@ -1,0 +1,24 @@
+<body>
+    <h2>난수10개 생성</h2>
+    <hr>
+    <script>
+        const plots = [];
+        for(let i=0; i<10; i++){
+            plots.push(Math.floor(Math.random()*100));
+        }
+        document.write(plots);
+    </script>
+    <hr>
+    가장 큰 수는? <span id="big"></span>
+    <script>
+        let big = 0;
+        for(let i=0; i<plots.length; i++){            
+            
+            if( big < plots[i]){
+                big = plots[i];
+            } else continue;
+        }
+        document.getElementById("big").innerHTML = big;
+    </script>
+    <hr>
+</body>

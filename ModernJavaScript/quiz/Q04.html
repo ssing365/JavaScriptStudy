@@ -1,0 +1,20 @@
+<body>
+    <h2>document.write()로 표만들기</h2>
+    <hr>
+    <div id="table"></div>
+    <script>
+        let table = "<table border='1'>";
+            table += "<tr><td><b>n</td>";
+                for(let y=0; y<=9; y++){
+                    table += "<td>"+y+"</td>";
+                }
+                table += "</tr>";
+            table += "<tr><td><b>n²</td>";
+                for(let y=0; y<=9; y++){
+                    table += "<td>"+y**2+"</td>";
+                }
+                table += "</tr>";
+            table += "</table>";
+        document.getElementById("table").innerHTML = table;
+    </script>
+</body>

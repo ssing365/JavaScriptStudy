@@ -1,0 +1,34 @@
+<body>
+    <!--
+    디폴트 파라미터 : ES6에서는 파라미터에 기본값을 설정할 수 있다.
+        만약 인수가 전달되지 않는 경우에는 디폴트로 설정된 값이 할당된다.
+        인수가 전달되는 경우에는 default값은 무시된다.-->
+    <h2>기본 매개 변수(Default parameter)</h2>
+    <script>
+        /*
+        a를 제외한 b,c는 값을 전달받지 못하기 때문에 undefined가 된다.
+        JS는 이름만 동일하면 매개변수의 개수 상관없이 호출할 수 있다.*/
+        const func1 = function(a, b, c){
+            console.log(a,b,c);
+        };
+
+        
+        //기본값을 설정하기 위해 파라미터가 undefined인지 일일이 체크 후 값을 할당하고 있다.
+        function func2(a,b,c){
+            if(b==undefined) b = 'morning';
+            if(c==undefined) c = 'sir';
+
+            console.log(a,b,c);
+        }
+
+        //디폴트 파라미터를 적용하여 함수 생성. 값을 지정하기위한 별도의 로직이 없어 편리
+        const func3 = (a, b=2, c=3) => {
+            console.log(a, b, c);
+        }
+
+        func1('1');
+        func2('good');
+        func3(1);
+        func3('나는', 'java', '개발자');
+    </script>
+</body>

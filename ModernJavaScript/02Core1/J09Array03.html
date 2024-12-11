@@ -1,0 +1,87 @@
+<body>
+    <h2>배열</h2>
+    <script>
+        console.error("일반적인 배열 사용");
+        const arr = [1,2,3]; //리터럴을 통해 배열 생성
+        for(let i=0; i<arr.length; i++){
+            console.log("arr["+i+"]", arr[i])
+        }
+
+        /*
+        pop()/push()
+            : 배열의 마지막 부분에 요소를 삭제 혹은 추가한다.
+        shift()/unshift()
+            : 배열의 첫 번째 요소를 삭제 혹은 추가한다.
+        */
+        console.error("pop()/push() 와 shift()/unshift()");
+        const arr2 = [10, 20, 30];
+        arr2.pop();
+        arr2.push();
+        console.log(arr2);
+        arr2.shift();
+        arr2.unshift("start");
+        console.log(arr2);
+
+        /*
+        splice()    
+            : 지정한 인덱스의 요소를 삭제 / 추가하는 기능을 모두 가진 함수
+            형식] splice(시작인덱스, 삭제할요소개수, 추가할요소1, 추가할요소2, ...N)
+        */
+        console.error("splice()함수 사용하기");
+        let arr3 = [1,5,7];
+        
+        //인덱스1부터 삭제없이 2,3,4를 추가 
+        arr3.splice(1, 0, 2, 3, 4);
+        console.log(arr3); //[1,2,3,4,5,7]
+
+        //인덱스1부터 두개 삭제 ,,,,,
+        arr3.splice(1, 2);
+        console.log(arr3); //[1,4,5,7]
+        
+        //인덱스0부터 삭제없이 50,51 추가
+        arr3.splice(0, 0, 50, 51);
+        console.log(arr3); //[50,51,1,4,5,7]
+
+        //인덱스2부터 삭제없이 요소 네개 추가
+        arr3.splice(2, 0, 52, 53, 54, 55);
+        console.log(arr3); //[50,51,52,53,54,55,1,4,5,7]
+
+        /*
+        Array.from()
+            : 기존의 배열을 새로운 배열로 복사하거나,
+              함수에서 사용하는 경우 인수를 통해 생성된 유사배열을 실제 배열로 변경해준다.
+        */
+        console.error("Array.from() 사용하기");
+        function fromFunction(){
+            /*
+            arguments
+                : 함수 호출시 전달되는 인수들을 하나로 묶어 생성되는 유사배열객체.
+                배열과 비슷하지만 배열은 아니므로 배열함수를 사용하면 에러가 난다.
+            */
+            console.log('arguments', arguments);
+            //Array.from()을 통해 유사배열(arguments)을 실제 배열로 변경
+            const newArr1 = Array.from(arguments);
+            console.log("newArr1", newArr1);
+        }
+        fromFunction(98, 99, 100);
+
+        
+        let arr4 = [3,6,9]; // 원본 배열 생성(ex주소값 : 0x001)
+        let newArr2 = Array.from(arr4); // 얕은 복사로 새로운 배열 생성(ex주소값 : 0x002)
+        let newArr3 = arr4; // 참조 복사로 동일한 배열 참조(ex주소값 : 0x001)
+
+        console.warn("얕은 복사");
+        //복사본 배열에 12를 추가
+        newArr2.push(12);
+        //복사본인 newArr2에만 추가되고, 원본에는 추가되지 않는다. 즉 서로 다른 배열
+        console.log("newArr2", newArr2);
+        console.log("arr4", arr4);
+
+        console.warn("참조 복사");
+        //위와 동일하게 복사본에 12추가
+        newArr3.push(12);
+        //복사본과 원본에 동시에 추가된다. 즉 같은 배열
+        console.log("newArr3", newArr3);
+        console.log("arr4", arr4);
+    </script>
+</body>

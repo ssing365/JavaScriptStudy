@@ -1,0 +1,41 @@
+<body>
+    <h2>스프레드 연산자(Spread Operator)</h2>
+    <script>
+        /*
+        함수에서의 Spread operator
+        -Rest parameter
+            : 함수를 호출할 때 전달된 여러 매개변수를 한 배열로 모아주는 기능
+            스프레드 연산자(...)를 사용하며, 인수의 개수가 정해져 있지 않을 때 유용하다.
+        */
+        function add(...rest){
+            let sum = 0;
+            for (let item of rest){
+                sum+=item;
+            }
+            return sum;
+        }
+        console.log("결과1-1", add(1));
+        console.log("결과1-2", add(1,2));
+        console.log("결과1-3", add(1,2,3));
+        
+        //일반 매개변수와 혼용가능. 단 Rest파라미터는 반드시 제일 마지막에 위치해야한다.
+        let addMul = (method, ...rest) => {
+            if(method ==='add'){
+                let sum = 0;
+                for(let item of rest){
+                    sum += item;
+                }
+                return sum
+            }
+            else if (method ==='multiply'){
+                let mul = 1;
+                for(let item of rest){
+                    mul *= item;
+                }
+                return mul;
+            }
+        }
+        console.log("결과 2-1", addMul('add', 1,2,3,4));
+        console.log("결과 2-2", addMul('multiply', 1,2,3,4));
+    </script>
+</body>

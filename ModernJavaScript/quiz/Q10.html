@@ -1,0 +1,29 @@
+<body>
+    <h2>정수 5개 입력받아 역순으로 출력</h2>
+    <hr>
+    입력된 수의 배열 
+    <p id="result"></p>
+    <hr>
+    역순으로 재정렬된 배열 
+    <p id="reverse"></p>
+    <script>
+        const input_list = [];
+
+        result = "";
+        reverse = "";
+        for(let i=0; i<5; i++){
+            x = prompt("정수 입력")
+            input_list.push(x);
+        }
+        
+        const newArr1 = Array.from(input_list);
+        const newArr2 = Array.from(input_list);
+
+        for(let i=0; i<input_list.length; i++){
+            result += newArr1.shift()+" ";
+            reverse += newArr2.pop()+" ";
+        }
+        document.getElementById("result").innerText = result;
+        document.getElementById("reverse").innerText = reverse;
+    </script>
+</body>

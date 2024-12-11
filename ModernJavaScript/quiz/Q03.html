@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>*로 탑 만들기</h2>
+    <hr>
+    <script>
+        function topstar(){
+            for(let i=1; i<=5; i++){
+                for(let star=1; star<=5; star++){
+                    document.write("*")
+                    if(i==star) {
+                        document.write("<br/>")
+                        break;
+                    }
+                }
+            }
+        }
+        topstar();
+    </script>
+    
+    <h2>*로 역순으로 탑 만들기</h2>
+    <hr>
+    <script>
+        function downstar(){
+            for(let j=5; j>0; j--){
+                for(let star=1; star<=5; star++){
+                    document.write("*")
+                    if(j==star) {
+                        document.write("<br/>")
+                        break;
+                    }
+                }
+            }
+        }
+        downstar();
+    </script>
+
+    
+</body>
+</html>
