@@ -1,0 +1,63 @@
+<script>
+    /*
+    forEach()함수
+     - Array의 크기만큼 반복하여 콜백함수를 호출한다.
+     - thisArgs는 콜백함수 내에서 인수로 사용된다. this.X와 같이 사용할 수 있다.(생략가능)
+     - 반환값이 없다.
+    형식]
+        const array = [1,2,...,N];
+        array.forEach(
+            callBackFunction(현재값, 현재값의 인덱스, 호출한 배열)
+                실행부
+            },
+            thisArgs
+        );
+    */
+    function forEachTest1(){
+        console.error("forEachTest1() called..기본사용법");
+        const oldArray = [1,2,3,4,5];
+        oldArray.forEach(function(currentVal, index, array){
+            console.log("현재값 : "+currentVal, '인덱스 : '+index, '배열 : '+array);
+        });
+    };
+
+    function forEachTest2(){
+        console.error("forEachTest2() called..배열 요소의 합계");
+        const oldArray = [1,2,3,4,5];
+        let sum = 0;
+        /*
+        콜백함수를 무기명 함수로 선언했던 첫번째 예제와 달리 여기서는 외부함수로 선언.
+        매개변수는 currentVal만 사용했다. index, array는 생략가능
+        */
+        function getSum(currentVal){
+            sum += currentVal
+        }
+        oldArray.forEach(getSum);
+        console.log(sum); //15
+    }
+
+    function forEachTest3(){
+        console.error("forEachTest3() called... args 매개변수 사용하기");
+        const oldArray = [1,2,3,4,5,6,7,8,9,10];
+        let sum = 0;
+        //콜백함수에서 사용할 인수를 객체로 정의
+        const myArgs = {min:3, max:7};
+        function getSum(currentVal){
+            /* forEach()의 인수로 전달된 myArgs는 'this.key'와 같은 형태로 사용할 수 있다. */
+            if(currentVal >= this.min && currentVal <= this.max){
+                sum += currentVal;
+            }
+        }
+        //콜백함수(getSum)와 객체로 정의한 인수(myArgs)를 전달하여 forEach()함수 호출
+        oldArray.forEach(getSum, myArgs); //myArgs 인수로 전달
+        console.log(sum);
+    }
+</script>
+<body>
+    <h2>고차함수 - forEach()</h2>
+    <div>
+        <input type="button" onclick="forEachTest1();" value="forEach1">
+        <input type="button" onclick="forEachTest2();" value="forEach2">
+        <input type="button" onclick="forEachTest3();" value="forEach3">
+    </div>
+</body>

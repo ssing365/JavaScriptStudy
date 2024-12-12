@@ -1,0 +1,23 @@
+<body>
+    <h2>문제8</h2>
+    <script>
+        const products = [
+            { name: 'apple', category: 'fruit' },
+            { name: 'notebook', category: 'electronics' },
+            { name: 'banana', category: 'fruit' },
+            { name: 'mouse', category: 'electronics' }
+        ];
+        const result = [];
+
+        products.filter((x) => {
+                if (x.category==='fruit') {
+                    result.push(x);
+                }
+            }
+        );
+        for(x of result){
+            document.write(x.name);
+            document.write(" ")
+        }
+    </script>
+</body>

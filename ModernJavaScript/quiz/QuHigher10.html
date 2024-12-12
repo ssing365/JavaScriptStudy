@@ -1,0 +1,16 @@
+<body>
+    <h2>문제10</h2>
+    <script>
+        const numbers = [30, 7, 12, 9, 15];
+        max_value = 0;
+
+        numbers.reduce(function(previousVal,currentVal){
+            if(max_value<currentVal){
+                max_value = currentVal
+            }   
+        },0)
+
+        document.write(max_value);
+        
+    </script>
+</body>

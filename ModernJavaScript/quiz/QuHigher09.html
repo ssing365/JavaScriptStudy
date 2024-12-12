@@ -1,0 +1,17 @@
+<body>
+  <h2>문제9</h2>
+  <script>
+    const products = [
+      { name: "apple", price: 1000 },
+      { name: "banana", price: 800 },
+      { name: "notebook", price: 20000 },
+    ];
+
+    let sum = 0;
+    products.reduce(function (previousVal, currentVal) {
+      sum += currentVal.price;
+    }, 0);
+
+    document.write(sum);
+  </script>
+</body>

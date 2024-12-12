@@ -1,0 +1,21 @@
+<body>
+    <h2>문제4</h2>
+    <script>
+        const products = [
+            { name: 'apple', price: 1000, category: 'fruit' },
+            { name: 'banana', price: 800, category: 'fruit' },
+            { name: 'notebook', price: 20000, category: 'electronics' },
+            { name: 'mouse', price: 5000, category: 'electronics' }
+        ];
+
+        const result = [];
+        result.push(products.filter((x)=>x.price>=1000))
+        console.log(result)
+        for(x of result){
+            for(y of x){
+                document.write(y.name);
+                document.write(" ")
+            }
+        }
+    </script>
+</body>

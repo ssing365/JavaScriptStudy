@@ -1,0 +1,52 @@
+<script>
+    /*
+    filter()함수
+     - 콜백함수의 조건에 만족하는 요소만 반환하여 새로운 배열을 만들 때 사용한다.
+     - map()과 형식이 완전히 동일하지만, 반환값에 대한 부분만 차이가 있다.
+    */
+    function filterTest1() {
+        console.error("filterTest1() called.. 조건에 맞는 엘리먼트만 추출");
+        const oldArray = [1,2,3,4,5];
+        const newArray = oldArray.filter(function(currentVal){
+            console.log("현재원소", currentVal);
+            return currentVal <= 3;
+        });
+        console.log(newArray);
+    }
+
+    function filterTest2(){
+        console.error("filterTest2() called..JSON 객체형배열 사용 및 검색");
+        const oldJSONArray = [
+            {name : "혜빈", salary:100000},
+            {name : "제인", salary:200000},
+            {name : "나윤", salary:300000},
+            {name : "주이", salary:400000},
+            {name : "아인", salary:500000},
+            {name : "낸시", salary:600000},
+        ];
+
+        const newJSONArray = oldJSONArray.filter(function(currentVal){
+            return currentVal.salary >= 300000;
+        }, undefined);
+        console.log(newJSONArray);
+    }
+
+    function filterTest3(){
+        console.error("filterTest3() called.. thisArgs매개변수 사용하기");
+        const oldArray = [1,2,3,4,5,50,100];
+        const thisArgs = {min:1, max:10};
+        function getMinMax(value){
+            return value>=this.min && value <= this.max;
+        }
+        const newArray = oldArray.filter(getMinMax, thisArgs);
+        console.log("thistArgs사용결과", newArray);
+    }
+</script>
+<body>
+<h2>고차함수 - filter()</h2>
+<div>
+    <input type="button" onclick="filterTest1();" value="filter1">
+    <input type="button" onclick="filterTest2();" value="filter2">
+    <input type="button" onclick="filterTest3();" value="filter3">
+</div>
+</body>

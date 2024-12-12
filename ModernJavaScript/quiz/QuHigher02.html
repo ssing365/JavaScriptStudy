@@ -1,0 +1,26 @@
+<body>
+    <h2>문제2</h2>
+    <script>
+        const users = [
+            { name: 'Alice', age: 30 },
+            { name: 'Bob', age: 25 },
+            { name: 'Charlie', age: 35 }
+        ];
+
+        const result = [];
+
+        users.filter((x)=>{
+            if(x.age>=30){
+                result.push(x);
+            }
+        }
+        );
+
+        for(x of result){
+            document.write(x.name);
+            document.write(" ")
+        }
+    </script>
+</body>
+
+

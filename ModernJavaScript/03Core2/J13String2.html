@@ -1,0 +1,50 @@
+<body>
+    <h2>JS의 Core객체 - String</h2>
+    <script>
+        //구분자를 통해 문자열을 분리해서 배열로 반환해주는 함수
+        console.error("split()함수");
+        console.warn("구분자가 있는경우");
+        const tel = "010-2323-2424";
+        const telArr = tel.split("-");
+        for(let i = 0; i<telArr.length; i++){
+            console.log("telArr["+i+"]="+telArr[i]);
+        }
+
+        //문자열의 앞에서부터 검색하여 문자열을 찾아 인덱스 반환
+        console.warn("구분자가 없는 경우");
+        const telArrNo = tel.split("*");
+        for(let i =0 ; i<telArrNo.length; i++){
+            console.log("telArr["+i+"]="+telArrNo[i]);
+        }
+
+        const str1 = "Hello JavaScript";
+        const str2 = '안녕 자바스크립트';
+
+        console.error("indexOf()함수");
+        console.log(str2.indexOf("자바")!=-1?"자바 포함됨":"자바 포함안됨");
+        console.log(str1+"에서 처음 a의 위치는? "+str1.indexOf("a")); //7
+
+        console.error("lastIndexOf()함수");
+        console.log(str1.lastIndexOf("a")!=-1?"a 포함됨":"a 포함안됨");
+        console.log(str1+"에서 a의 마지막 위치는? "+str1.lastIndexOf("a")); //9
+    </script> 
+    <h4>링크걸기</h4>
+    <div id="myNaver"></div>
+    <div id="myDaum"></div>
+    <script>
+        //방법1 (ES6이전. 권장하지않음)
+        let linkText = "Naver바로가기";
+        let linkHTML = linkText.link("https://www.naver.com");
+        document.getElementById("myNaver").innerHTML = linkHTML;
+
+        //방법2 (ES6이후. DOM API를 사용하는 방법을 추천한다.)
+        const a = document.createElement("a");
+        //문서 객체를 통해 a태그 생성
+        a.href = "https://www.daum.net" ;
+        //a태그에 텍스트 삽입
+        a.textContent = "Daum바로가기"  ;
+        //선택한 DOM에 자식으로 a태그 추가
+        document.getElementById("myDaum").appendChild(a);
+    </script>
+
+</body>
