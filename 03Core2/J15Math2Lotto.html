@@ -1,0 +1,51 @@
+<body>
+    <script>
+        //버블정렬
+        const setOrdering = function(arr){
+            for(let i=0; i<arr.length-1; i++){
+                for(let j=0; j<(arr.length-1)-i; j++){
+                    if(arr[j] > arr[j+1]){
+                        temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+            }
+        }
+
+        //로또번호 생성
+        function getLotto(){
+            const lottoNum = [0,0,0,0,0,0];
+            let index = 0;
+            let flag = false;
+            while(index<6){
+                let randomNumber = parseInt(Math.random()*45)+1;
+
+                for(let i=0; i<lottoNum.length; i++){
+                    if(randomNumber == lottoNum[i]){
+                        flag = true;
+                    }
+                }
+
+                if(flag == true){
+                    flag = false;
+                    continue;
+                }
+                else{
+                    lottoNum[index++] = randomNumber;
+                }
+            }
+            setOrdering(lottoNum);
+            let lottoStr = "";
+            for(let i =0; i<lottoNum.length; i++){
+                lottoStr += lottoNum[i] + "&nbsp;";
+            }
+            document.getElementById("lottoNumber").innerHTML = lottoStr;
+        }
+    </script>
+
+    <h2>Lotto번호 생성하기</h2>
+    <button onclick="getLotto();">로또번호 생성하기</button>
+
+    <span  id="lottoNumber" style="font-size: 2em; color:red;" >생성된 로또번호는 여기에 출력됩니다.</span>
+</body>

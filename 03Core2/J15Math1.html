@@ -1,0 +1,19 @@
+<body>
+    <script>
+        console.error("JS의 core객체 - Math");
+        
+        console.log("-10의 절댓값 : " + Math.abs(-10));
+        console.log("2의 3승 : "+Math.pow(2,3));
+        console.log("3.159의 반올림 : "+Math.round(3.159));
+        console.log("3.159의 올림 : "+Math.ceil(3.159));
+        console.log("3.159의 내림 : "+Math.floor(3.159));
+
+        //0~1 사이의 실수를 랜덤하게 생성
+        console.log("난수발생1 : "+ Math.random());
+        //범위를 지정하여 생성할 대는 아래와 같은 수식을 응용
+        console.log("난수발생2 1~10 : " + parseInt((Math.random*10)+1));
+
+        console.log("최솟값 : " + Math.min(1,10,-100,-10,1000,0));
+        console.log("최댓값 : " + Math.max(1,10,-100,1000,0));
+    </script>
+</body>
