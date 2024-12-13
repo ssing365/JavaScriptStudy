@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        addEventListner를 사용했을 땐 첫 번째 인수로 on을 제외한 이벤트명을 기술한다.
+        */
+        window.addEventListener("load", function(){
+            alert("Load 이벤트 발생됨. 문서 로드 완료됨.")
+        });
+    </script>
+</head>
+<body>
+    <h2>이벤트 - load 세 번째</h2>
+    <script>
+        alert("문서가 끝나기 직전입니다.");
+    </script>
+</body>
+</html>
