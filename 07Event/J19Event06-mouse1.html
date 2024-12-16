@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            padding: 20px; border: 1px solid black;
+            text-align: center; width: 300px;
+        }
+        .div01{
+            float: left;
+        }
+        .clear{
+            clear: both; border: 0px;
+        }
+    </style>
+</head>
+<body>
+    <h2>마우스 이벤트</h2>
+    <h3>우클릭</h3>
+    <script>
+        /*
+        contextmenu 이벤트 
+            : 마우스 우클릭시 발생하는 이벤트. 특정 상황에 맞는 팝업(컨텍스트) 메뉴창을 띄워준다.
+        */
+        //해당 문서 로드가 완료된 후 연결된 익명함수가 실행
+        window.onload = function(){
+            const myDiv1 = document.getElementById("myDiv1");
+            myDiv1.addEventListener("contextmenu", function(e){
+                /*
+                마우스 우클릭이 감지되면 이벤트 리스너가 즉시 익명함수를 호출한다.
+                이때 event객체를 전달하게 되는데 매개변수 e를 통해 받을 수 있다.*/
+                console.log('이벤트 객체',e)
+                console.dir(e)
+                e.preventDefault();
+                alert("마우스 우클릭 금지영역");
+            });
+        }
+    </script>
+    <div class="div01">
+        <p>마우스 우클릭 - 메뉴보임</p>
+    </div>
+    <div class="div01" id="myDiv1">
+        <p>마우스 우클릭 - 메뉴 비활성화</p>
+    </div>
+    
+    <div class="clear"></div>
+
+    <h3>마우스 휠 움직임</h3>
+    <script>
+        /*
+        wheel이벤트
+            : 마우스 휠 움직임을 감지하는 이벤트*/
+        let fSize = 12;
+        function myWheel(e){
+            /*
+            매개변수로 전달된 event 객체를 통해 휠 움직임을 확인할 수 있는데,
+            deltaY가 아래로 움직일 때는 양수, 위로 움직일 때는 음수가 반환된다.
+            */
+            e.preventDefault(); //화면 스크롤 움직임 방지
+            console.log(e.deltaY);
+            //휠의 움직임에 따라 폰트의 크기를 확대/축소한다.
+            if(e.deltaY < 0) fSize--;
+            else fSize++;
+            //DOM의 style속성을 이용해 font-size를 부여한다.
+            document.getElementById("incrementText").style.fontSize = fSize+"px";             
+        }
+    </script>
+    <!-- div엘리먼트에 속성으로 이벤트 리스너 부착
+     이벤트가 감지되면 함수 호출 시 event객체를 명시적으로 전달한다. -->
+    <div class="div01" onwheel="myWheel(event)">
+        <p>마우스 휠을 움직여보세요.</p>
+    </div>
+    <div class="div01" id="incrementText">텍스트</div>
+
+    <div class="clear"></div>
+
+    <h3>움직임 감지</h3>
+    <script>
+        /*
+        mousemove 이벤트
+            : 마우스 커서가 움직일 때 발생하는 이벤트.
+            이벤트 객체를 통해 현재 마우스의 위치(x, y좌표)를 알 수 있다.
+        mouseout 이벤트
+            : 마우스 커서가 일정 영역을 벗어났을 때 발생되는 이벤트.
+        */
+        function myMouseMove(e){
+            let x = e.clientX;
+            let y = e.clientY;
+            let coor = "<p>(x=" + x + ", y=" + y + ")</p>";
+            document.getElementById("display").innerHTML = coor;
+        }
+
+        function myMouseOut(){
+            document.getElementById("display").innerHTML = "<p>마우스가 영역을 벗어남</p>";
+        }
+    </script>
+    <div class="div01" onmousemove="myMouseMove(event)" onmouseout="myMouseOut()">
+        <p>마우스를 움직여 보세요.</p>
+    </div>
+    <div class="div01" id="display">
+        <p>마우스 좌표가 출력됩니다.</p>
+    </div>
+
+    <div class="clear"></div>
+
+    <h3>더블클릭</h3>
+    <script>
+        function myDbClick(){
+            document.getElementById("textAdd").innerHTML += "더블클릭했네요"    ;
+        }
+    </script>
+    <div class="div01" ondblclick="myDbClick()">
+        <p>더블클릭 해보세요.</p>
+    </div>
+    <div class="div01" id="textAdd"></div>
+    <div class="clear"></div>
+
+    <h3>클릭</h3>
+    <script>
+        let cnt = 0;
+        function myClick(){
+            /*
+            배열의 인덱스는 0~3까지만 변화하도록 %연산자 사용
+            */
+            let myColor = ['red','blue','green','black'];
+            document.getElementById("colorChange").style.backgroundColor = myColor[++cnt%4];
+        }
+    </script>
+    <div class="div01" onclick="myClick()">
+        <p>마우스로 클릭해보세요</p>
+    </div>
+    <div class="div01" id="colorChange"></div>
+    <div class="clear"></div>
+</body>
+</html>

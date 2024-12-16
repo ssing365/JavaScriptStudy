@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>키보드 이벤트</h2>
+    <h3>Key 이벤트 테스트</h3>
+    <script>
+        /*
+        keydown 
+            : 키보드를 누르는 순간 발생하는 이벤트. shift와 같은 특수키와 한글까지 인식할 수 있다.
+        keypress (⚠️ 더 이상 사용 권장되지 않음)
+            :  keydown과 같지만 특수키나 한글을 인식하지 못함
+        keyup
+            : 키보드를 눌렀다 뗄 때 발생하는 이벤트.
+        */
+        let count = 0;
+        function fnKeyHandler(flag){
+            count++;
+            const spanTag = document.getElementById("span");
+            switch(flag){
+                case 1:
+                    spanTag.innerHTML = "keydown이벤트 발생" + count;
+                    break;
+                case 2:
+                    spanTag.innerHTML = "keypress이벤트 발생" + count;
+                    break;
+                case 3:
+                    spanTag.innerHTML = "keyup이벤트 발생" + count;
+                    break;
+            }
+        }
+    </script>
+    keydown : <input type="text" onkeydown="fnKeyHandler(1);">
+    <br>
+    keypress : <input type="text" onkeypress="fnKeyHandler(2);">
+    <br>
+    keyup : <input type="text" onkeyup="fnKeyHandler(3);">
+    <br>
+    <span id="span" style="font-size: 1.5em; color:red;"></span>
+
+    <!------------------------------------------------------------------>
+    <!------------------------------------------------------------------>
+
+    <h3>keyCode 이용하여 현재키 알아내기</h3>
+    F5와 Backspace는 사용불가합니다.
+    <script>
+        function FnKeyEvent(){
+            const span = document.getElementById("keySpan");
+            const keycode = event.keyCode;
+            span.innerHTML = keycode;
+            if(keycode == 116 || keycode ==8){
+                alert("해당 문서에서는 F5, Backspace는 사용할 수 없습니다.");
+                return false;
+            }
+        }
+    </script>
+    <br>
+    <input type="text" name="" id="" onkeydown="return FnKeyEvent();">
+    <br>
+    <span id="keySpan" style="color:blue; font-size:1.5em;"></span>
+
+    <!------------------------------------------------------------------>
+    <!------------------------------------------------------------------>
+
+    <h3>특정 조건에서 포커스 이동하기</h3>
+    <script>
+        function fnJuminFocus(){
+            const obj1 = document.getElementById("ju1");
+            console.log("입력값", obj1.value);
+            const strLen = obj1.value.length;
+            if(strLen ==6){
+                document.getElementById("ju2").focus();
+            }
+        }
+    </script>
+    <!-- 
+    연습문제 ] 앞에서와 마찬가지로 주민번호 뒤 7자리를 입력하면
+    전화번호의 tel1로 이동하고, tel1에서 3자리가 입력되면 tel2로 이동하는 함수 생성 -->
+    <script>
+        function commonFocusMove(thisObj, maxlen, next_tag){
+            const prev = document.getElementById(thisObj);
+            const next = document.getElementById(next_tag);
+            if(maxlen == prev.value.length){
+                next.focus();
+            }
+        }
+    </script>
+    <h4>주민번호 입력하기</h4>
+    <input type="text" name="" id="ju1" size="6" onkeyup="fnJuminFocus();" maxlength="6"> -
+    <input type="text" name="" id="ju2" size="7" onkeyup="commonFocusMove('ju2', 7, 'tel1');" >
+
+    
+    <h3>휴대전화번호 입력하기</h3>
+    <input type="text" name="" id="tel1" size="3"
+        onkeyup="commonFocusMove('tel1',3,'tel2');">-
+    <input type="text" name="" id="tel2" size="4"
+        onkeyup="commonFocusMove('tel2',4,'tel3');">-
+    <input type="text" name="" id="tel3" size="4" maxlength="4">
+</body>
+</html>
