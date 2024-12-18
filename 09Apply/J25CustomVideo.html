@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid red;
+            width: 300px;
+        }
+        input {
+            position: relative;	z-index: 2; height: 40px; line-height: 35px;
+            background-color: #333;	border: 2px solid #333;
+            color: #fff;
+        }
+        input:hover {
+            background-color: #fff; border-color: #59b1eb; color: #59b1eb;
+        }
+        input::before, input::after {
+            top: 0; width: 50%; height: 100%;
+            background-color: #333;
+        }
+        input:hover::before, input:hover::after {
+            width: 0; background-color: #59b1eb;
+        }
+    </style>
+    
+</head>
+<body>
+    <h2>Javascript를 이용한 커스텀 비디오 만들기</h2>
+    <div>
+        <video id="video" width="300" height="200"
+         src="../media/video.mp4" muted autoplay controls poster="../images/html5.png"></video>
+
+    </div>
+    <div>
+        <progress value="0" id="progress" style="width: 300px;"></progress>
+    </div>
+    <div>
+        <span id="currenttime"></span> / <span id="totaltime"></span>
+    </div>
+    <input type="button" value="재생하기" onclick="play();">        
+    <input type="button" value="일시정지" onclick="stop()">
+    <input type="button" value="처음부터 재생하기" onclick="start()">
+    <input type="button" value="볼륨+" onclick="setVolumn(1)">
+    <input type="button" value="볼륨-" onclick="setVolumn(-1)">
+    <input type="button" value="음소거" onclick="setVolumn(0)">
+    <input type="button" value="재생속도+" onclick="setPlaybackRate(1)">
+    <input type="button" value="재생속도-" onclick="setPlaybackRate(-1)">
+    <input type="button" value="10초 앞으로" onclick="setTime(1)">
+    <input type="button" value="10초 뒤로" onclick="setTime(-1)">
+
+    <script>
+        let video;
+        window.onload = function(){
+            // 재생시간을 표시하는 엘리먼트 DOM
+            const currentSpan = document.getElementById("currenttime");
+            const totalSpan = document.getElementById("totaltime");
+            // 동영상을 출력하는 엘리먼트 DOM
+            video = document.getElementById("video");
+            video.volume = 0.5; // 첫 재생 시 볼륨 설정
+            /*
+            동영상 재생시 지속적으로 발생되는 timeupdate 이벤트를 DOM에 부착한다.
+            이를 통해 재생시간에 대한 정보를 받을 수 있다.
+            currentTime : 현재 재생시간 반환
+            duration : 전체 재생시간 반환
+            */
+            video.addEventListener("timeupdate", function(){
+                // 재생시간을 화면에 표시
+                currentSpan.innerHTML = timeShow(video.currentTime); // video.currentTime;
+                totalSpan.innerHTML = timeShow(video.duration); // video.duration;
+
+                // 반환되는 시간을 통해 프로그레스바를 설정
+                progress.max = video.duration;
+                progress.value = video.currentTime;
+            });
+        }
+
+        // 재생
+        function play(){
+            // 화면을 숨기고 싶을 때 사용하는 속성
+            video.hidden = "";
+            video.play();
+        }
+
+        // 일시정지
+        function stop(){
+            // video.hidden = true; //숨김 상태로 전환
+            video.pause();
+        }
+
+        // 처음부터 다시 재생
+        function start(){
+            // 재생 시간을 0으로 강제 설정
+            video.currentTime = 0;
+            video.play();
+        }
+
+        /*
+        timeupdate 이벤트를 통해 반환받는 재생시간은 123.xxxx와 같은 밀리세컨즈 단위의 시간이므로,
+        가독성을 높여주기 위해 00:00:00 형식으로 변환한다.
+        */
+        function timeShow(seconds){
+            // 시간 반올림
+            seconds = Math.round(seconds);
+
+            // 시간 계산
+            let h = parseInt(seconds/3600);
+            let m = parseInt((seconds%3600) / 60);
+            let s = seconds % 60; 
+
+            // 시간이 10보다 작을 때 0:0:0과 같이 출력되는 걸 방지하기 위해 '0' 추가
+            let hour = (h<10) ? '0' + h : h;
+            let min = (m<10) ? '0' + m : m;
+            let sec = (s<10) ? '0' + s : s;
+
+            return hour + ":" + min + ":" + sec;
+        }
+
+        // 볼륨 조절 (0~1)
+        function setVolumn(value){
+            if (value == 0){
+                video.muted = true;
+            }
+            else{
+                video.muted = false;
+                let nowVolume = video.volume;
+                if(value == 1){
+                    nowVolume += 0.1;
+                    video.volume = (nowVolume>1) ? 1 : nowVolume;
+                }
+                else{
+                    nowVolume -= 0.1;
+                    video.volume = (nowVolume < 0) ? 0 : nowVolume;
+                }
+            }
+        }
+        
+        // 재생 속도
+        function setPlaybackRate(value){
+            if(value == 1){
+                video.playbackRate += 0.25;
+            }
+            else{
+                video.playbackRate -= 0.25;
+            }
+        }
+
+        // 건너뛰기
+        function setTime(value){
+            if(value == 1){
+                video.currentTime += 10;
+            }
+            else{
+                video.currentTime -= 10;
+            }
+        }
+    </script>
+</body>
+</html>

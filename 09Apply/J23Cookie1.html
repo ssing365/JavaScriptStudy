@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        쿠키 생성 
+            : 매개변수로 전달되는 exp가 양수이면 미래의 시간으로 설정되므로 쿠키가 생성된다.
+            반대로 음수라면 쿠키는 삭제된다.
+            쿠키는 웹브라우저를 닫아도 즉시 삭제되지 않고 유효시간동안 유지된다.
+        */
+        //세 개의 매개변수는 순서대로 쿠키명, 쿠키값, 유효시간
+        const setCookie = function(name, value, exp){
+            const date = new Date(); // 시간 설정을 위해 Date 객체 생성
+            date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+            // 쿠키 생성 : 쿠키명 = 쿠키값; 유효시간; 적용될 경로;
+            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+        }
+
+        /*
+        쿠키 읽기 
+            : 쿠키는 세미콜론(;)으로 구분되므로 1차 split한 후 
+            이퀄(=)로 2차 split하여 쿠키값을 읽을 수 있다.
+        */
+        const getCookie = function(name){
+            const values = document.cookie.split(";"); //1차 split()으로 배열 생성
+            for(let i=0; i<values.length; i++){
+                const unit = values[i].trim();
+                const value = unit.split("=");
+                if(value[0]==name){ // 매개변수로 전달된 쿠키명과 비교
+                    return unescape(value[1]); // 해당 쿠키값을 반환한다.
+                }
+            }
+            return null;
+        }
+
+        /* 쿠키 생성하기 */
+        function makeCookie(){
+            // 사용자가 입력한 값을 읽어온다.
+            const cName = document.getElementById("cName").value;
+            const cValue = document.getElementById("cValue").value;
+            // 읽은 값을 인수로 전달하고, 유효시간은 1일로 설정하여 쿠키를 생성한다.
+            setCookie(cName, cValue, 1);
+            alert("쿠키가 생성되었습니다.");
+            // 웹브라우저를 새로고침한다. F5를 누른 것과 동일하다.
+            location.reload();
+        }
+
+        /* 쿠키 읽어오기 */
+        function readCookie(){
+            // 읽어 올 쿠키명을 가져온다.
+            const cName = document.getElementById("cName").value;
+
+            // 해당 이름으로 생성된 쿠키를 읽어온다.
+            const readValue = getCookie(cName);
+            if(readValue == null){
+                alert("해당 이름으로 생성된 쿠키가 없습니다.");
+            }
+            else{
+                alert("쿠키값 : "+readValue);
+            }
+        }
+
+        /* 
+        쿠키 삭제하기 
+            : 같은 이름, 경로로 유효기간을 과거시점으로 설정하면 된다.
+        */
+        function deleteCookie(){
+            const cName = document.getElementById("cName").value;
+
+            setCookie(cName,cValue, -1); // 유효기간을 음수, 즉 과거시점으로 설정
+            alert("쿠키가 삭제되었습니다.");
+            location.reload();
+        }
+    </script>
+</head>
+<body>
+    <h2>쿠키 생성 하기</h2>
+    <form action="">
+        쿠키명 : <input type="text" id="cName" value="popup1">
+        <br>
+        쿠키에 저장할 값 : <input type="text" id="cValue" value="팝업창 열기">
+        <br>
+        <button onclick="makeCookie()">쿠키생성</button>
+        <button onclick="readCookie()">쿠키읽기</button>
+        <button onclick="deleteCookie()">쿠키삭제</button>
+    </form>
+</body>
+</html>

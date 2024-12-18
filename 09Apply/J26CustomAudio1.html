@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript를 이용한 커스텀 오디오 만들기</h2>
+    <div>
+        <progress value="0" id="progress"></progress>
+    </div>
+    <div>
+        <input type="button" value="PLAY" onclick="play();">
+        <input type="button" value="STOP" onclick="stop();">
+        <span id="current_time"></span>
+        /
+        <span id="total_time"></span>
+    </div>
+</body>
+<script>
+    // Audio 객체 생성
+    const audio = new Audio("../media/My_Love.mp3");
+    window.onload = function(){
+        const currentSpan = document.getElementById("current_time");
+        const totalSpan = document.getElementById("total_time");
+        const progress = document.getElementById("progress");
+
+        // 진행사항 확인을 위한 리스너 부착
+        audio.addEventListener("timeupdate", function(){
+            totalSpan.innerHTML = audio.duration;
+            currentSpan.innerHTML = audio.currentTime;
+            // 프로그레스 바에 적용
+            progress.max = audio.duration;
+            progress.value = audio.currentTime;
+        })
+    }
+    function play(){
+        audio.play();
+    }
+    function stop(){
+        audio.pause();
+    }
+</script>
+</html>
